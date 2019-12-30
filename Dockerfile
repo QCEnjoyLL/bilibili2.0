@@ -17,4 +17,3 @@ RUN apk add --no-cache --virtual bili git build-base python-dev py-pip jpeg-dev 
 CMD git pull && \
     pip install --no-cache-dir -r requirements.txt && \
     python ./run.py
-    
