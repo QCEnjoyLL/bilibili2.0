@@ -1,12 +1,14 @@
 FROM python:3.6-alpine
 
-MAINTAINER Orange <orange@nerocats.com>
+MAINTAINER orange <orange@nerocats.com>
 
 ENV LIBRARY_PATH=/lib:/usr/lib
 
 WORKDIR /app
 
-RUN apk add --no-cache --virtual bili git build-base python-dev py-pip jpeg-dev zlib-dev && \
+RUN apk add --no-cache --virtual bili git build-base python-dev py-pip jpeg-dev zlib-dev tzdata && \
+    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    apk del tzdata && \
     git clone https://github.com/yjqiang/bili2.0.git /app && \
     pip install --no-cache-dir -r requirements.txt && \
     rm -r /var/cache/apk && \
